@@ -1,38 +1,18 @@
-//Desktop share button toggle
-const desktopShareBtn = document.getElementById("desktop-share-btn");
+const desktopShareBtn = document.getElementById("share-btn");
 
-document.addEventListener("click", toggleDesktopShare);
-
-function toggleDesktopShare() {
+desktopShareBtn.addEventListener("click", function () {
   const shareShapeContainer = document.querySelector(".share-shape-container");
+  const authorInfo = document.querySelector(".author-info");
+  const avatarContainer = document.querySelector(".date-name-avatar-container");
 
-  shareShapeContainer.classList.toggle("display-none");
-}
+  const isMobile = window.innerWidth <= 768;
 
-// Mobile Share Toggle
-
-const mobileAuthorArea = document.querySelector(".mobile-author-area");
-
-const mobileSocialSharingBar = document.querySelector(
-  ".mobile-social-sharing-bar"
-);
-
-const mobileShareBtnContainer = document.querySelector(
-  ".mobile-share-btn-container"
-);
-
-mobileShareBtnContainer.addEventListener("click", function () {
-  mobileAuthorArea.style.display = "none";
-  mobileSocialSharingBar.style.display = "flex";
+  if (isMobile) {
+    // On mobile: toggle showing share container in flow, and hide avatar
+    avatarContainer.classList.toggle("display-none");
+    shareShapeContainer.classList.toggle("mobile-active");
+  } else {
+    // On desktop: toggle popup-style share box
+    shareShapeContainer.classList.toggle("display-none");
+  }
 });
-
-
-
-const mobileSocialSharingBtn = document.querySelector(
-  ".mobile-social-sharing-btn-container"
-);
-
-mobileSocialSharingBtn.addEventListener("click", function () {
-    mobileAuthorArea.style.display = "flex";
-    mobileSocialSharingBar.style.display = "none";
-})
